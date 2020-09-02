@@ -5,7 +5,7 @@
 ll split_by(char *list[], char *command, char *delim){
     
     ll n = 0; 
-    list[n] = strtok(command, delim);
+    list[0] = strtok(command, delim);
     while (list[n] != NULL)
     {
         // printf("command %lld: %s\n", n, list[n]);
@@ -34,12 +34,15 @@ void shell_loop(){
 
         // Execute Commands
         for(ll i = 0; i < n_command; i++){
+
+            printf("command %lld: %s\n", i, list_command[i]);
+
             char *curr_command[1000];
             ll n_curr_command = 0;
             n_curr_command = split_by(curr_command, command, " \t\n\r");
 
             for(ll j = 0; j < n_command; j++){
-                printf("command %lld: %s\n", j, curr_command[j]);
+                printf("subcommand %lld: %s\n", j, curr_command[j]);
             }
         }
     }

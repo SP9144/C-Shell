@@ -16,5 +16,5 @@ void prompt() {
         strcpy(dir, p+strlen(home));
     }
 
-    printf("\033[0;30m\x1b[44m<%s@%s:%s>\033[0m", username, hostname, dir);
+    printf("\033[0;30m\x1b[44m<%s@%s:%s>\033[0m ", username, hostname, dir);
 }

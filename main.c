@@ -1,5 +1,19 @@
 #include "prompt.h"
 #include "headers.h"
+// #include "execute_com.c"
+
+ll split_by(char *list[], char *command, char *delim){
+    
+    ll n = 0; 
+    list[n] = strtok(command, delim);
+    while (list[n] != NULL)
+    {
+        // printf("command %lld: %s\n", n, list[n]);
+        n++;
+        list[n] = strtok(NULL, delim);
+    }
+    return n;
+}
 
 void shell_loop(){
     do{
@@ -12,10 +26,22 @@ void shell_loop(){
         getline(&command, &len, stdin);
         // printf("Command: %s\n", command);
 
-        // Input handling
-        
+        // Input handling - list of commands - ';'
+        char *list_command[10000];
+        ll n_command = 0;
+        n_command = split_by(list_command, command, ";\n");
+        // printf("number of commands: %lld\n", n_command);
 
+        // Execute Commands
+        for(ll i = 0; i < n_command; i++){
+            char *curr_command[1000];
+            ll n_curr_command = 0;
+            n_curr_command = split_by(curr_command, command, " \t\n\r");
 
+            for(ll j = 0; j < n_command; j++){
+                printf("command %lld: %s\n", j, curr_command[j]);
+            }
+        }
     }
     while(1);
 }
@@ -45,6 +71,7 @@ int main(int argc, char **argv)
     printf("\033[1;32m\n**** Welcome to C-Shell ****\n\n\033[0m");
 
     shell_loop();
+    // prompt();
 
     return 0;
 }

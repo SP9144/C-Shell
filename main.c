@@ -41,7 +41,7 @@ void shell_loop(){
             ll n_curr_command = 0;
             n_curr_command = split_by(curr_command, command, " \t\n\r");
 
-            for(ll j = 0; j < n_command; j++){
+            for(ll j = 0; j < n_curr_command; j++){
                 printf("subcommand %lld: %s\n", j, curr_command[j]);
             }
         }

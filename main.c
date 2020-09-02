@@ -35,14 +35,20 @@ void shell_loop(){
         // Execute Commands
         for(ll i = 0; i < n_command; i++){
 
-            printf("command %lld: %s\n", i, list_command[i]);
+            // printf("command %lld: %s\n", i, list_command[i]);
 
+            // Dividing current command
             char *curr_command[1000];
             ll n_curr_command = 0;
-            n_curr_command = split_by(curr_command, command, " \t\n\r");
+            n_curr_command = split_by(curr_command, list_command[i], " \t\n\r");
+            // printf("number of subcommands: %lld\n", n_curr_command);
 
-            for(ll j = 0; j < n_curr_command; j++){
-                printf("subcommand %lld: %s\n", j, curr_command[j]);
+            // for(ll j = 0; j < n_curr_command; j++){
+            //     printf("subcommand %lld: %s\n", j, curr_command[j]);
+            // }
+
+            if(strcmp(curr_command[0], "exit") == 0){
+                exit(0);
             }
         }
     }

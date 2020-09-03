@@ -17,6 +17,6 @@ char cwd[2000];
 
 void shell_loop();  /* Main shell loop */
 void prompt();      /* Print Prompt */
-
+void cd();          /* cd: Change Directory */
 
 #endif

@@ -19,7 +19,7 @@ void cd(char *command[], ll n){
     }
     else{                                   /* cd <relative path> */
         strcpy(path, command[1]);
-        // printf("Path: %s\n", path);
+        printf("Path: %s\n", path);
     }
 
     int val = chdir(path);

@@ -63,6 +63,9 @@ void shell_loop(){
             else if(strcmp(curr_command[0], "echo") == 0){      /* echo */
                 echo(list_command[i], n_curr_command);
             }
+            else{
+                printf("\033[0;31mError: command not found\033[0m\n");
+            }
         }
     }
     while(1);

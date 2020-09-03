@@ -38,6 +38,5 @@ void echo(char *command, ll n) {
             }
         }
         printf("%s\n",string);
-    }
-    
+    }    
 }

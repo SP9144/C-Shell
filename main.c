@@ -54,6 +54,9 @@ void shell_loop(){
             else if(strcmp(curr_command[0], "pwd") == 0){       /* pwd */
                 pwd(n_curr_command);
             }
+            else if(strcmp(curr_command[0], "echo") == 0){      /* echo */
+                cd(curr_command, n_curr_command);
+            }
         }
     }
     while(1);

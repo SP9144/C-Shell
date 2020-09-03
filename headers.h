@@ -18,7 +18,8 @@ char cwd[2000];
 
 void shell_loop();                      /* Main shell loop */
 void prompt();                          /* Print Prompt */
-void cd(char *command[],ll n);          /* cd: Change Directory */
+void cd(char *command[], ll n);         /* cd: Change Directory */
 void pwd(ll n);                         /* pwd: Present Working Directory */
+void echo(char *command[], ll n);       /* echo: Present Working Directory */
 
 #endif

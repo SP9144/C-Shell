@@ -1,6 +1,6 @@
 #include "headers.h"
 
-void cd(char *command[],ll n){
+void cd(char *command[], ll n){
     char path[2000];
 
     if(n>2){                                /* cd arg1 arg2: INVALID */

@@ -5,7 +5,7 @@ void cd(char *command[],ll n){
 
     if(n>2){                                /* cd arg1 arg2: INVALID */
         printf("\033[0;31mError: Too many arguments\033[0m\n");
-        perror("cd");
+        return;
     }
     else if(n==1){                          /* cd: goes to ~ */
         strcpy(path, home);

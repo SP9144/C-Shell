@@ -28,7 +28,11 @@ void shell_loop(){
         char *list_command[10000];
         ll n_command = 0;
         n_command = split_by(list_command, command, ";\n");
+        
         // printf("number of commands: %lld\n", n_command);
+        // for(ll k = 0; k < n_command; k++){
+        //         printf("command %lld: %s\n", k, list_command[k]);
+        //     }
 
         //*** Execute Commands ***
         for(ll i = 0; i < n_command; i++){
@@ -37,10 +41,12 @@ void shell_loop(){
 
             //*** Dividing current command ***
             char *curr_command[1000];
+            char cmd[2000];
             ll n_curr_command = 0;
-            n_curr_command = split_by(curr_command, list_command[i], " \t\n\r");
+            strcpy(cmd, list_command[i]);
+            n_curr_command = split_by(curr_command, cmd, " \t\n\r");
+            
             // printf("number of subcommands: %lld\n", n_curr_command);
-
             // for(ll j = 0; j < n_curr_command; j++){
             //     printf("subcommand %lld: %s\n", j, curr_command[j]);
             // }
@@ -55,7 +61,7 @@ void shell_loop(){
                 pwd(n_curr_command);
             }
             else if(strcmp(curr_command[0], "echo") == 0){      /* echo */
-                cd(curr_command, n_curr_command);
+                echo(list_command[i], n_curr_command);
             }
         }
     }

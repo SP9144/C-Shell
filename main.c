@@ -45,11 +45,14 @@ void shell_loop(){
             //     printf("subcommand %lld: %s\n", j, curr_command[j]);
             // }
 
-            if(strcmp(curr_command[0], "exit") == 0){   /* exit */
+            if(strcmp(curr_command[0], "exit") == 0){           /* exit */
                 exit(0);
             }
-            if(strcmp(curr_command[0], "cd") == 0){     /* cd */
+            else if(strcmp(curr_command[0], "cd") == 0){        /* cd */
                 cd(curr_command, n_curr_command);
+            }
+            else if(strcmp(curr_command[0], "pwd") == 0){       /* pwd */
+                pwd(n_curr_command);
             }
         }
     }

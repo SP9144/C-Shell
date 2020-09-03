@@ -5,7 +5,7 @@
 #include <string.h> 
 #include <stdlib.h>
 #include <unistd.h> 
- 
+
 #define ll long long int 
 
 // Host and username buffers
@@ -19,5 +19,6 @@ char cwd[2000];
 void shell_loop();                      /* Main shell loop */
 void prompt();                          /* Print Prompt */
 void cd(char *command[],ll n);          /* cd: Change Directory */
+void pwd(ll n);                         /* pwd: Present Working Directory */
 
 #endif

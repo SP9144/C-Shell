@@ -1,6 +1,4 @@
-#include "prompt.h"
 #include "headers.h"
-// #include "execute_com.c"
 
 ll split_by(char *list[], char *command, char *delim){
     

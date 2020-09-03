@@ -15,7 +15,8 @@ char username[200];
 char home[2000];
 char cwd[2000];
 
-// main.c
-void shell_loop();
+void shell_loop();  /* Main shell loop */
+void prompt();      /* Print Prompt */
+
 
 #endif

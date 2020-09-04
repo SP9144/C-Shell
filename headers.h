@@ -4,6 +4,7 @@
 #include <grp.h>
 #include <pwd.h>
 #include <time.h>
+#include <fcntl.h>
 #include <stdio.h> 
 #include <string.h> 
 #include <stdlib.h>
@@ -28,6 +29,7 @@ void prompt();                          /* Print Prompt */
 void cd(char *command[], ll n);         /* cd: Change Directory */
 void pwd(ll n);                         /* pwd: Present Working Directory */
 void echo(char *command, ll n);         /* echo: Print to stdout */
-void ls(char *command[], ll n);           /* ls: List files */
+void ls(char *command[], ll n);         /* ls: List files */
+void pinfo(char *command[], ll n);      /* pinfo: Process Information */
 
 #endif

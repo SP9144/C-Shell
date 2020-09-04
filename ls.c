@@ -118,7 +118,7 @@ void print_ls(int flag_a, int flag_l, int ndir){    // *** ls OUTPUT ***
                 strcpy(subpath, path);
                 strcat(subpath, "/");
                 strcat(subpath, namelist[i]->d_name);
-                printf("path: %s\n", subpath);
+                // printf("path: %s\n", subpath);
                 
                 struct stat sb;
                 stat(subpath, &sb);
@@ -223,9 +223,10 @@ void ls(char *command[], ll n) {    // *** ls INPUT ***
                     // strcpy(path, cwd);
                     // strcat(path, "/");
                     // strcat(path, command[i]);
-                    // printf("Path: %s\n", path);
-                    strcpy(path, command[i]);
                     
+                    strcpy(path, command[i]);
+                    // printf("Path: %s\n", path);
+
                     strcpy(dir, command[i]);
                 }
                 print_ls(flag_a, flag_l, n-1-nflags);

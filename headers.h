@@ -1,11 +1,17 @@
 #ifndef __HEADER_H
 #define __HEADER_H
 
+#include <grp.h>
+#include <pwd.h>
+#include <time.h>
 #include <stdio.h> 
 #include <string.h> 
 #include <stdlib.h>
 #include <unistd.h>
-#include <dirent.h> 
+#include <dirent.h>
+#include <unistd.h>
+#include <sys/stat.h> 
+#include <sys/types.h>
 
 #define ll long long int 
 

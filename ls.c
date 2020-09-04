@@ -24,7 +24,7 @@ void print_ls(int flag_a, int flag_l, int ndir){    // *** ls OUTPUT ***
     }
 
 
-    if(flag_a == 1 && flag_l == 0){
+    if(flag_a == 1 && flag_l == 0){                                     /* -a only */
         int i = 0;
         while (i<nfiles)    // *** list of files in dir ***
         {
@@ -35,13 +35,131 @@ void print_ls(int flag_a, int flag_l, int ndir){    // *** ls OUTPUT ***
             printf("\n");
         }
     }
-    else if(flag_a == 0 && flag_l == 0){
+    else if(flag_a == 0 && flag_l == 0){                                /* no flag */
         int i = 0;
         while (i<nfiles)    // *** list of files in dir ***
         {
             if(namelist[i]->d_name[0] != '.')
             {
                 printf("%s ", namelist[i]->d_name);
+            }
+            i++;
+        }
+        printf("\n");
+        if(ndir > 1){
+            printf("\n");
+        }
+    }
+    else if(flag_a == 1 && flag_l == 1){                                /* -al or la */
+        char subpath[2000]="";       
+        int i = 0;
+        while (i<nfiles)    // *** list of files in dir ***
+        {
+            strcpy(subpath, path);
+            strcat(subpath, "/");
+            strcat(subpath, namelist[i]->d_name);
+            // printf("path: %s\n", subpath);
+            
+            struct stat sb;
+            stat(subpath, &sb);
+
+            struct passwd *pwd;
+            pwd = getpwuid(sb.st_uid);
+
+            struct group *grp;
+            grp = getgrgid(sb.st_gid);
+
+            // permissions
+            printf((S_ISDIR(sb.st_mode)) ? "d" : "-");
+            printf((sb.st_mode & S_IRUSR) ? "r" : "-");
+            printf((sb.st_mode & S_IWUSR) ? "w" : "-");
+            printf((sb.st_mode & S_IXUSR) ? "x" : "-");
+            printf((sb.st_mode & S_IRGRP) ? "r" : "-");
+            printf((sb.st_mode & S_IWGRP) ? "w" : "-");
+            printf((sb.st_mode & S_IXGRP) ? "x" : "-");
+            printf((sb.st_mode & S_IROTH) ? "r" : "-");
+            printf((sb.st_mode & S_IWOTH) ? "w" : "-");
+            printf((sb.st_mode & S_IXOTH) ? "x" : "-");
+
+            // number of hard links
+            printf(" %ld", sb.st_nlink);
+
+            // UserID and GroupID of owner
+            printf(" %s", pwd->pw_name);
+            printf(" %s", grp->gr_name);
+
+            // Size of the file
+            printf(" %-8ld", sb.st_size);
+
+            // Date and Time - last modified
+            char time[25];
+            strftime(time, sizeof(time), "%b  %d %H:%M", localtime(&sb.st_mtime));
+            printf(" %-13s", time);
+
+            // File name
+            printf(" %s", namelist[i]->d_name);
+
+            printf("\n");
+            i++;
+        }
+        printf("\n");
+        if(ndir > 1){
+            printf("\n");
+        }
+    }
+    else if(flag_a == 0 && flag_l == 1){                                /* no flag */
+        char subpath[2000]="";       
+        int i = 0;
+
+        while (i<nfiles)    // *** list of files in dir ***
+        {
+            if(namelist[i]->d_name[0] != '.')
+            {
+                strcpy(subpath, path);
+                strcat(subpath, "/");
+                strcat(subpath, namelist[i]->d_name);
+                printf("path: %s\n", subpath);
+                
+                struct stat sb;
+                stat(subpath, &sb);
+
+                struct passwd *pwd;
+                pwd = getpwuid(sb.st_uid);
+
+                struct group *grp;
+                grp = getgrgid(sb.st_gid);
+
+                // permissions
+                printf((S_ISDIR(sb.st_mode)) ? "d" : "-");
+                printf((sb.st_mode & S_IRUSR) ? "r" : "-");
+                printf((sb.st_mode & S_IWUSR) ? "w" : "-");
+                printf((sb.st_mode & S_IXUSR) ? "x" : "-");
+                printf((sb.st_mode & S_IRGRP) ? "r" : "-");
+                printf((sb.st_mode & S_IWGRP) ? "w" : "-");
+                printf((sb.st_mode & S_IXGRP) ? "x" : "-");
+                printf((sb.st_mode & S_IROTH) ? "r" : "-");
+                printf((sb.st_mode & S_IWOTH) ? "w" : "-");
+                printf((sb.st_mode & S_IXOTH) ? "x" : "-");
+
+                // number of hard links
+                printf(" %ld", sb.st_nlink);
+
+                // UserID and GroupID of owner
+                printf(" %s", pwd->pw_name);
+                printf(" %s", grp->gr_name);
+
+                // Size of the file
+                printf(" %-8ld", sb.st_size);
+
+                // Date and Time - last modified
+                char time[25];
+                strftime(time, sizeof(time), "%b  %d %H:%M", localtime(&sb.st_mtime));
+                printf(" %-13s", time);
+
+                // File name
+                printf(" %s", namelist[i]->d_name);
+
+                printf("\n");
             }
             i++;
         }
@@ -102,11 +220,12 @@ void ls(char *command[], ll n) {    // *** ls INPUT ***
                 }
                 else
                 {                                       /* path: <relative path> to cwd */  
-                    strcpy(path, cwd);
-                    strcat(path, "/");
-                    strcat(path, command[i]);
+                    // strcpy(path, cwd);
+                    // strcat(path, "/");
+                    // strcat(path, command[i]);
                     // printf("Path: %s\n", path);
-
+                    strcpy(path, command[i]);
+                    
                     strcpy(dir, command[i]);
                 }
                 print_ls(flag_a, flag_l, n-1-nflags);

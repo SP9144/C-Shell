@@ -47,7 +47,7 @@ void pinfo(char *command[], ll n){
         list[n_stat] = strtok(NULL, " ");
     }
     // printf("status: %s\n", list[2]);
-    // printf("VM amount: %s\n", list[23]);
+    // printf("VM amount: %s\n", list[22]);
 
     // *** Exe File ***
     sprintf(exe, "/proc/%d/exe", pid);
@@ -79,7 +79,7 @@ void pinfo(char *command[], ll n){
     // *** Output ***
     printf("pid -- %d\n", pid);
     printf("Process Status -- %s\n", list[2]);
-    printf("memory -- %s\n", list[23]);
+    printf("memory -- %s\n", list[22]);
     printf("Executable Path -- %s\n", rel_exe_path);
 
 }

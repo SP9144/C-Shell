@@ -19,7 +19,7 @@ void pinfo(char *command[], ll n){
     }
     // printf("pid: %d\n", pid);
 
-    // *** Stat File ***
+    //*** Stat File ***
     sprintf(stat, "/proc/%d/stat", pid);
     // printf("stat file: %s\n", stat);
 
@@ -49,7 +49,7 @@ void pinfo(char *command[], ll n){
     // printf("status: %s\n", list[2]);
     // printf("VM amount: %s\n", list[22]);
 
-    // *** Exe File ***
+    //*** Exe File ***
     sprintf(exe, "/proc/%d/exe", pid);
     // printf("exe file: %s\n", exe); 
 
@@ -65,18 +65,18 @@ void pinfo(char *command[], ll n){
     else
     {
         char* p; 
-        if(strstr(exe_path, home)){
+        if(strstr(exe_path, home)){                 /* path: relative to home*/
             p = strstr(exe_path, home);
             strcpy(rel_exe_path, "~");
             strcat(rel_exe_path, p+strlen(home));
         }
-        else{
-            strcpy(rel_exe_path, exe_path);
+        else{                                       /* path: outside of shell home */
+            strcpy(rel_exe_path, exe_path);     
         }  
         // printf("exe file patj: %s\n", rel_exe_path);
     }
     
-    // *** Output ***
+    //*** Output ***
     printf("pid -- %d\n", pid);
     printf("Process Status -- %s\n", list[2]);
     printf("memory -- %s\n", list[22]);

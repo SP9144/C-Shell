@@ -51,23 +51,26 @@ void shell_loop(){
             //     printf("subcommand %lld: %s\n", j, curr_command[j]);
             // }
 
-            if(strcmp(curr_command[0], "exit") == 0){           /* exit */
+            if(strcmp(curr_command[0], "exit") == 0){                       /* exit */
                 exit(0);
             }
-            else if(strcmp(curr_command[0], "cd") == 0){        /* cd */
+            else if(strcmp(curr_command[0], "cd") == 0){                    /* cd */
                 cd(curr_command, n_curr_command);
             }
-            else if(strcmp(curr_command[0], "pwd") == 0){       /* pwd */
+            else if(strcmp(curr_command[0], "pwd") == 0){                   /* pwd */
                 pwd(n_curr_command);
             }
-            else if(strcmp(curr_command[0], "echo") == 0){      /* echo */
+            else if(strcmp(curr_command[0], "echo") == 0){                  /* echo */
                 echo(list_command[i], n_curr_command);
             }
-            else if(strcmp(curr_command[0], "ls") == 0){        /* ls */
+            else if(strcmp(curr_command[0], "ls") == 0){                    /* ls */
                 ls(curr_command, n_curr_command);
             }
-            else if(strcmp(curr_command[0], "pinfo") == 0){     /* pinfo */
+            else if(strcmp(curr_command[0], "pinfo") == 0){                 /* pinfo */
                 pinfo(curr_command, n_curr_command);
+            }
+            else if(strcmp(curr_command[n_curr_command-1], "&") == 0){      /* background processes - & */
+                // background(curr_command, n_curr_command);
             }
             else{
                 printf("\033[0;31mError: command not found\033[0m\n");
@@ -82,19 +85,21 @@ int main(int argc, char **argv)
     gethostname(hostname, sizeof(hostname));
     if(gethostname(hostname, sizeof(hostname)) != 0){
         printf("\033[0;31mError: Unable to retrieve Hostname\033[0m\n");
+        perror("gethostname(): ");
         strcpy(hostname, "hostname");
     }
 
     getlogin_r(username, sizeof(username));
     if(getlogin_r(username, sizeof(username)) != 0){
         printf("\033[0;31mError: Unable to retrieve Username\033[0m\n");
+        perror("getlogin_r(): ");
         strcpy(username, "username");
     }
     
     getcwd(home, sizeof(home));
     if(!getcwd(home, sizeof(home))){
         printf("\033[0;31mError: Unable to Shell Home\033[0m\n");
-        perror("getcwd() error");
+        perror("getcwd(): ");
         exit(1);
     }
 

@@ -22,6 +22,7 @@ char username[200];
 
 // Pseudo-home for Shell
 char home[2000];
+
 char cwd[2000];
 
 void shell_loop();                      /* Main shell loop */

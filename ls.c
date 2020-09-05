@@ -26,7 +26,7 @@ void print_ls(int flag_a, int flag_l, int ndir){    // *** ls OUTPUT ***
 
     if(flag_a == 1 && flag_l == 0){                                     /* -a only */
         int i = 0;
-        while (i<nfiles)    // *** list of files in dir ***
+        while (i<nfiles)    //*** list of files in dir ***
         {
             printf("%s ", namelist[i++]->d_name);
         }
@@ -37,7 +37,7 @@ void print_ls(int flag_a, int flag_l, int ndir){    // *** ls OUTPUT ***
     }
     else if(flag_a == 0 && flag_l == 0){                                /* no flag */
         int i = 0;
-        while (i<nfiles)    // *** list of files in dir ***
+        while (i<nfiles)    //*** list of files in dir ***
         {
             if(namelist[i]->d_name[0] != '.')
             {
@@ -53,7 +53,7 @@ void print_ls(int flag_a, int flag_l, int ndir){    // *** ls OUTPUT ***
     else if(flag_a == 1 && flag_l == 1){                                /* -al or la */
         char subpath[2000]="";       
         int i = 0;
-        while (i<nfiles)    // *** list of files in dir ***
+        while (i<nfiles)    //*** list of files in dir ***
         {
             strcpy(subpath, path);
             strcat(subpath, "/");

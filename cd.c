@@ -19,10 +19,11 @@ void cd(char *command[], ll n){
     }
     else{                                   /* cd <relative path> */
         strcpy(path, command[1]);
-        // printf("Path: %s\n", path);
+        printf("Path: %s\n", path);
     }
 
     int val = chdir(path);
+    printf("val: %d\n", val);
     if(val == -1){                          /* INVALID PATH */
         printf("\033[0;31mError: Invalid path\033[0m\n");
         perror("cd");

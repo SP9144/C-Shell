@@ -199,6 +199,10 @@ void ls(char *command[], ll n) {    // *** ls INPUT ***
                 else if(command[i][1]=='a'){                                        /* -a */
                     flag_a = 1;
                 } 
+                else{
+                    printf("\033[0;31mError: Invalid flag (Only -l, -a)\033[0m\n");
+                    return;
+                }
             }
             i++;
         }

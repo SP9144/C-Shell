@@ -15,7 +15,7 @@ This is a Linux Shell implemented in C.
 
 ## Built:In Commands
 
-* `ls [:l:a] <dir1> <dir2>` - List files and Directory
+* `ls [-l -a] <dir1> <dir2>` - List files and Directory
 
   * `ls`: List of all the files and directories in the current directory in alphabetical order
   * `ls -a`: Hidden files

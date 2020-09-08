@@ -67,14 +67,13 @@ void shell_loop(){
                 printf("ls\n");
                 ls(curr_command, n_curr_command);
             }
-            else if(strcmp(curr_command[0], "pinfo") == 0){
-                printf("args[0]: %s, args: %s\n", curr_command[0], *curr_command);                /* pinfo */
+            else if(strcmp(curr_command[0], "pinfo") == 0){                 /* pinfo */
                 pinfo(curr_command, n_curr_command);
             }
-            else if(strcmp(curr_command[n_curr_command-1], "&") == 0){                            /* background processes - & */
+            else if(strcmp(curr_command[n_curr_command-1], "&") == 0){      /* background processes - & */
                 background(curr_command, n_curr_command);
             }
-            else{                                                                                 /* foreground processes*/
+            else{                                                           /* foreground processes*/
                 foreground(curr_command, n_curr_command);
                 // printf("\033[0;31mError: command not found\033[0m\n");
             }

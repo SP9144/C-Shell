@@ -1,5 +1,7 @@
 #include "headers.h"
 
+int hist_limit = 20;
+
 void read_history(){
 
     char path[2000]="";
@@ -12,12 +14,12 @@ void read_history(){
     FILE *file_ptr = NULL;
     file_ptr = fopen(path, "r");
 
-    if(file_ptr == -1){
+    if(fopen(path, "r") == NULL){
         printf("\033[0;31mError: history.txt not found\033[0m\n");
         perror("fopen");
     }
 
-    // for(int i=0; i<20; i++){
+    // for(int i=0; i<hist_limit; i++){
     //     getline(&command, &len, file_ptr);
     //     strcpy(hist[i], command);
     //     printf("%d %s\n", i, hist[i]);
@@ -30,7 +32,7 @@ void read_history(){
         i++;
     }
 
-    // for(int i=0; i<20; i++){
+    // for(int i=0; i<hist_limit; i++){
     //     printf("%d: ", i);
     //     printf("%s\n", hist[i]);
     // }
@@ -46,12 +48,12 @@ void write_history(){
     FILE *file_ptr = NULL;
     file_ptr = fopen(path, "w");
 
-    if(file_ptr == -1){
+    if(file_ptr == NULL){
         printf("\033[0;31mError: history.txt not found\033[0m\n");
         perror("fopen");
     }
 
-    for(int i=0; i<20; i++){
+    for(int i=0; i<hist_limit; i++){
 
         fprintf(file_ptr, "%s", hist[i]);
     }
@@ -59,12 +61,12 @@ void write_history(){
 }
 
 void update_history(char *command){
-    for(int i=1; i<20; i++){
+    for(int i=1; i<hist_limit; i++){
         strcpy(hist[i-1], hist[i]);
     }
-    strcpy(hist[20-1],command);
+    strcpy(hist[hist_limit-1],command);
 
-    // for(int i=0; i<20; i++){
+    // for(int i=0; i<hist_limit; i++){
     //     printf("%s\n", hist[i]);
     // }
     
@@ -82,13 +84,13 @@ void history(char *command[], ll n){
         n_cmds = 10;
     }
     else{
-        if(atoi(command[1]) > 20){
-            n_cmds = 20;
+        if(atoi(command[1]) > hist_limit){
+            n_cmds = hist_limit;
         }
         n_cmds = atoi(command[1]);
     }
 
-    for(int i=20-n_cmds; i<20; i++){
+    for(int i=hist_limit-n_cmds; i<hist_limit; i++){
         printf("%s", hist[i]);
     }
 }

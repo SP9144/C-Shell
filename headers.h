@@ -27,7 +27,6 @@ char cwd[2000];
 
 // History
 char hist[20][1000];
-// int hist_limit = 20;
 
 void shell_loop();                                      /* Main shell loop */
 void prompt();                                          /* Print Prompt */
@@ -36,10 +35,10 @@ void pwd(ll n);                                         /* pwd: Present Working 
 void echo(char *command, ll n);                         /* echo: Print to stdout */
 void ls(char *command[], ll n);                         /* ls: List files */
 void pinfo(char *command[], ll n);                      /* pinfo: Process Information */
-void read_history();
-void write_history();
-void update_history(char *command);
-void history(char *command[], ll n);             
+void read_history();                                    /* Read history from history.txt */
+void write_history();                                   /* Write history to history.txt */
+void update_history(char *command);                     /* Update history */
+void history(char *command[], ll n);                    /* Display history */    
 void foreground(char *commands[], ll n);                /* Run process in foreground */
 void background(char *commands[], ll n);                /* Run process in background */
 

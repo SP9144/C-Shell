@@ -22,6 +22,7 @@ void shell_loop(){
         char *command = NULL;
         size_t len;
         getline(&command, &len, stdin);
+        update_history(command);
         // printf("Command: %s\n", command);
 
         //*** Input handling - list of commands - ';' ***
@@ -52,15 +53,7 @@ void shell_loop(){
             // }
 
             if(strcmp(curr_command[0], "exit") == 0){                       /* exit */
-                if(!strcmp(curr_command[n_curr_command-1], "&")){
-                    continue;
-                }
-                else if(n_curr_command > 1){
-                    printf("\033[0;31mError: Too many arguments\033[0m\n");
-                }
-                else{
                     exit(0);
-                }
             }
             else if(strcmp(curr_command[0], "cd") == 0){                    /* cd */
                 if(!strcmp(curr_command[n_curr_command-1], "&"))
@@ -91,6 +84,12 @@ void shell_loop(){
                     pinfo(curr_command, n_curr_command-1);
                 else
                    pinfo(curr_command, n_curr_command); 
+            }
+            else if(strcmp(curr_command[0], "history") == 0){               /* pinfo */
+                if(!strcmp(curr_command[n_curr_command-1], "&"))
+                    history(curr_command, n_curr_command-1);
+                else
+                    history(curr_command, n_curr_command);
             }
             else if(strstr(list_command[i], "&")){                          /* background processes - & */
                 background(curr_command, n_curr_command);
@@ -126,6 +125,8 @@ int main(int argc, char **argv)
         perror("getcwd(): ");
         exit(1);
     }
+
+    read_history();
 
     printf("\033[1;33m\n****************************\n\tHELLO WORLD!!\n****************************\n\033[0m");
     printf("\033[1;32m\n**** Welcome to C-Shell ****\n\n\033[0m");

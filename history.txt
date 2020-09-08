@@ -1,0 +1,4 @@
+cd
+exit
+history
+history 20

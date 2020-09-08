@@ -23,17 +23,24 @@ char username[200];
 
 // Pseudo-home for Shell
 char home[2000];
-
 char cwd[2000];
 
-void shell_loop();                                          /* Main shell loop */
-void prompt();                                              /* Print Prompt */
-void cd(char *command[], ll n);                             /* cd: Change Directory */
-void pwd(ll n);                                             /* pwd: Present Working Directory */
-void echo(char *command, ll n);                             /* echo: Print to stdout */
-void ls(char *command[], ll n);                             /* ls: List files */
-void pinfo(char *command[], ll n);                          /* pinfo: Process Information */
-void foreground(char *commands[], ll n);     /* Run process in foreground */
-void background(char *commands[], ll n);     /* Run process in background */
+// History
+char hist[20][1000];
+// int hist_limit = 20;
+
+void shell_loop();                                      /* Main shell loop */
+void prompt();                                          /* Print Prompt */
+void cd(char *command[], ll n);                         /* cd: Change Directory */
+void pwd(ll n);                                         /* pwd: Present Working Directory */
+void echo(char *command, ll n);                         /* echo: Print to stdout */
+void ls(char *command[], ll n);                         /* ls: List files */
+void pinfo(char *command[], ll n);                      /* pinfo: Process Information */
+void read_history();
+void write_history();
+void update_history(char *command);
+void history(char *command[], ll n);             
+void foreground(char *commands[], ll n);                /* Run process in foreground */
+void background(char *commands[], ll n);                /* Run process in background */
 
 #endif

@@ -1,4 +1,20 @@
+lk
+k
+k
+k
+ls
+echo
 cd
+cd
+cd
+cd
+cd
+cd
+ls
 exit
+exit
+ls
+cd
+echo "Shreeya"
 history
-history 20
+exit

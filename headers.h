@@ -33,7 +33,7 @@ void pwd(ll n);                                             /* pwd: Present Work
 void echo(char *command, ll n);                             /* echo: Print to stdout */
 void ls(char *command[], ll n);                             /* ls: List files */
 void pinfo(char *command[], ll n);                          /* pinfo: Process Information */
-void foreground(char *command, char *commands[], ll n);     /* Run process in foreground */
-void background(char *command, char *commands[], ll n);     /* Run process in background */
+void foreground(char *commands[], ll n);     /* Run process in foreground */
+void background(char *commands[], ll n);     /* Run process in background */
 
 #endif

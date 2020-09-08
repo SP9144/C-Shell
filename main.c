@@ -51,26 +51,48 @@ void shell_loop(){
             //     printf("subcommand %lld: %s\n", j, curr_command[j]);
             // }
 
-            if(strcmp(curr_command[0], "exit") == 0){   /* exit */
-                exit(0);
+            if(strcmp(curr_command[0], "exit") == 0){                       /* exit */
+                if(!strcmp(curr_command[n_curr_command-1], "&")){
+                    continue;
+                }
+                else if(n_curr_command > 1){
+                    printf("\033[0;31mError: Too many arguments\033[0m\n");
+                }
+                else{
+                    exit(0);
+                }
             }
             else if(strcmp(curr_command[0], "cd") == 0){                    /* cd */
-                cd(curr_command, n_curr_command);
+                if(!strcmp(curr_command[n_curr_command-1], "&"))
+                    cd(curr_command, n_curr_command-1);
+                else
+                    cd(curr_command, n_curr_command);
             }
             else if(strcmp(curr_command[0], "pwd") == 0){                   /* pwd */
-                pwd(n_curr_command);
+                if(!strcmp(curr_command[n_curr_command-1], "&"))
+                    pwd(n_curr_command-1);
+                else
+                    pwd(n_curr_command);
             }
             else if(strcmp(curr_command[0], "echo") == 0){                  /* echo */
-                echo(list_command[i], n_curr_command);
+                if(!strcmp(curr_command[n_curr_command-1], "&"))
+                    echo(list_command[i], n_curr_command-1);
+                else
+                    echo(list_command[i], n_curr_command);
             }
             else if(strcmp(curr_command[0], "ls") == 0){                    /* ls */
-                printf("ls\n");
-                ls(curr_command, n_curr_command);
+                if(!strcmp(curr_command[n_curr_command-1], "&"))
+                    ls(curr_command, n_curr_command-1);
+                else
+                    ls(curr_command, n_curr_command);
             }
             else if(strcmp(curr_command[0], "pinfo") == 0){                 /* pinfo */
-                pinfo(curr_command, n_curr_command);
+                if(!strcmp(curr_command[n_curr_command-1], "&"))
+                    pinfo(curr_command, n_curr_command-1);
+                else
+                   pinfo(curr_command, n_curr_command); 
             }
-            else if(strcmp(curr_command[n_curr_command-1], "&") == 0){      /* background processes - & */
+            else if(strstr(list_command[i], "&")){                          /* background processes - & */
                 background(curr_command, n_curr_command);
             }
             else{                                                           /* foreground processes*/

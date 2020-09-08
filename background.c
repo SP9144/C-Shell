@@ -7,8 +7,12 @@ void background(char *commands[], ll n){
 
     char *subset[10000];
 
-    for(ll i =0; i < n-1; i++){
-        subset[i] = commands[i];
+    for(ll i =0; i < n; i++){ /* If command is `emacs & hi` */
+        while(strcmp(commands[i], "&")){
+            subset[i] = commands[i];
+            i++;
+        }
+        break;
     }
 
     if(pid == -1){
@@ -38,7 +42,7 @@ void background(char *commands[], ll n){
                 int x;
                 x = WEXITSTATUS(status);
                 if(x == 0){
-                    printf("%s with pid %lld exited normally\n", commands[0], n);
+                    printf("%s with pid %d exited normally\n", commands[0], sub_pid);
                 }
                 else{
                     printf("\033[0;31mError: Command not found\033[0m\n");
@@ -47,7 +51,7 @@ void background(char *commands[], ll n){
                 }
             }
             else{
-                printf("%s with pid %lld exited abnormally\n", commands[0], n);
+                printf("%s with pid %d exited abnormally\n", commands[0], sub_pid);
             }
         }
 

@@ -7,14 +7,14 @@ void foreground(char *commands[], ll n){
 
     if(pid == -1){
         printf("\033[0;31mError: Unable to fork\033[0m\n");
-        perror("fork: ");
+        perror("fork");
         return;
     }
     else if(pid == 0){
         int x = execvp(commands[0], commands);
         if(x == -1){
             printf("\033[0;31mError: Unable to execute\033[0m\n");
-            perror("execvp: ");
+            perror("execvp");
             return; 
         }
     }

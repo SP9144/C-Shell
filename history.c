@@ -12,6 +12,11 @@ void read_history(){
     FILE *file_ptr = NULL;
     file_ptr = fopen(path, "r");
 
+    if(file_ptr == -1){
+        printf("\033[0;31mError: history.txt not found\033[0m\n");
+        perror("fopen");
+    }
+
     // for(int i=0; i<20; i++){
     //     getline(&command, &len, file_ptr);
     //     strcpy(hist[i], command);
@@ -40,6 +45,11 @@ void write_history(){
 
     FILE *file_ptr = NULL;
     file_ptr = fopen(path, "w");
+
+    if(file_ptr == -1){
+        printf("\033[0;31mError: history.txt not found\033[0m\n");
+        perror("fopen");
+    }
 
     for(int i=0; i<20; i++){
 

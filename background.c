@@ -17,7 +17,7 @@ void background(char *commands[], ll n){
 
     if(pid == -1){
         printf("\033[0;31mError: Unable to fork\033[0m\n");
-        perror("fork: ");
+        perror("fork");
         return;
     }
     else if(pid == 0){
@@ -29,7 +29,7 @@ void background(char *commands[], ll n){
             x = execvp(commands[0], subset);
             if(x == -1){
                 printf("\033[0;31mError: Unable to execute\033[0m\n");
-                perror("execvp: ");
+                perror("execvp");
                 return; 
             }
         }
@@ -46,7 +46,7 @@ void background(char *commands[], ll n){
                 }
                 else{
                     printf("\033[0;31mError: Command not found\033[0m\n");
-                    perror("WEXITSTATUS: ");
+                    perror("WEXITSTATUS");
                     return;
                 }
             }

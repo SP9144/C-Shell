@@ -13,7 +13,7 @@ This is a Linux Shell implemented in C.
 
 `exit`
 
-## Built:In Commands
+## Commands
 
 * `ls [-l -a] <dir1> <dir2>` - List files and Directory
 
@@ -47,6 +47,9 @@ This is a Linux Shell implemented in C.
 
   * `pinfo`: Process information about the shell
   * `pinfo <pid>`: Process information about process with given pid
+
+* `<command> &` - Run Process in Background
+
 
 ## Files
 

@@ -23,7 +23,7 @@ This is a Linux Shell implemented in C.
   * `ls -al`/`l -la`/`ls -l -a`/`ls -a -l`: Long listing with hidden files
 
 
-* `cd [file]` - Change Directory
+* `cd <dir>` - Change Directory
 
   * `cd ..`: Change to previous directory
   * `cd .`: Remain in current directory  

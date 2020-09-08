@@ -12,6 +12,7 @@
 #include <dirent.h>
 #include <unistd.h>
 #include <sys/stat.h> 
+#include <sys/wait.h>
 #include <sys/types.h>
 
 #define ll long long int 
@@ -25,12 +26,14 @@ char home[2000];
 
 char cwd[2000];
 
-void shell_loop();                      /* Main shell loop */
-void prompt();                          /* Print Prompt */
-void cd(char *command[], ll n);         /* cd: Change Directory */
-void pwd(ll n);                         /* pwd: Present Working Directory */
-void echo(char *command, ll n);         /* echo: Print to stdout */
-void ls(char *command[], ll n);         /* ls: List files */
-void pinfo(char *command[], ll n);      /* pinfo: Process Information */
+void shell_loop();                                          /* Main shell loop */
+void prompt();                                              /* Print Prompt */
+void cd(char *command[], ll n);                             /* cd: Change Directory */
+void pwd(ll n);                                             /* pwd: Present Working Directory */
+void echo(char *command, ll n);                             /* echo: Print to stdout */
+void ls(char *command[], ll n);                             /* ls: List files */
+void pinfo(char *command[], ll n);                          /* pinfo: Process Information */
+void foreground(char *command, char *commands[], ll n);     /* Run process in foreground */
+void background(char *command, char *commands[], ll n);     /* Run process in background */
 
 #endif

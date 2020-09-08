@@ -51,7 +51,7 @@ void shell_loop(){
             //     printf("subcommand %lld: %s\n", j, curr_command[j]);
             // }
 
-            if(strcmp(curr_command[0], "exit") == 0){                       /* exit */
+            if(strcmp(curr_command[0], "exit") == 0 || strcmp(curr_command[0], "quit") || strcmp(curr_command[0], "q") == 0){   /* exit */
                 exit(0);
             }
             else if(strcmp(curr_command[0], "cd") == 0){                    /* cd */
@@ -66,14 +66,16 @@ void shell_loop(){
             else if(strcmp(curr_command[0], "ls") == 0){                    /* ls */
                 ls(curr_command, n_curr_command);
             }
-            else if(strcmp(curr_command[0], "pinfo") == 0){                 /* pinfo */
+            else if(strcmp(curr_command[0], "pinfo") == 0){
+                printf("args[0]: %s, args: %s\n", curr_command[0], *curr_command);                /* pinfo */
                 pinfo(curr_command, n_curr_command);
             }
-            else if(strcmp(curr_command[n_curr_command-1], "&") == 0){      /* background processes - & */
+            else if(strcmp(curr_command[n_curr_command-1], "&") == 0){                            /* background processes - & */
                 // background(curr_command, n_curr_command);
             }
-            else{
-                printf("\033[0;31mError: command not found\033[0m\n");
+            else{                                                                                 /* foreground processes*/
+                foreground(list_command[i], curr_command, n_curr_command);
+                // printf("\033[0;31mError: command not found\033[0m\n");
             }
         }
     }

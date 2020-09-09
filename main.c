@@ -53,7 +53,8 @@ void shell_loop(){
             // }
 
             if(strcmp(curr_command[0], "exit") == 0){                       /* exit */
-                    exit(0);
+                printf("Exiting\n");
+                exit(0);
             }
             else if(strcmp(curr_command[0], "cd") == 0){                    /* cd */
                 if(!strcmp(curr_command[n_curr_command-1], "&"))

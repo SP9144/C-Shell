@@ -8,17 +8,20 @@ void cd(char *command[], ll n){
         return;
     }
     else if(n==1){                          /* cd: goes to ~ */
-        strcpy(path, home);
+        strcpy(path, "");
+        strcat(path, home);
     }
     else if(command[1][0]=='~'){            /* cd ~/<path> */
 
         //*** Initialise complete path ***
-        strcpy(path, home);
+        strcpy(path, "");
+        strcat(path, home);
         strcat(path, &command[1][1]);
         // printf("Path: %s\n", path);
     }
     else{                                   /* cd <relative path> */
-        strcpy(path, command[1]);
+        strcpy(path, "");
+        strcat(path, command[1]);
         // printf("Path: %s\n", path);
     }
 

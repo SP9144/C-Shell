@@ -20,6 +20,6 @@ void foreground(char *commands[], ll n){
     }
     else{
         int status;
-        waitpid(pid, &status, 0);
+        waitpid(pid, &status, 0);               /* 0 => same gid as parent */
     }
 }

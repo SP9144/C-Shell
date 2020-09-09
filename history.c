@@ -27,15 +27,14 @@ void read_history(){
 
     int i=0;
     while(getline(&command, &len, file_ptr) != -1){
-        strcpy(hist[i], "");
-        strcpy(hist[i], command);
-        i++;
+        strcpy(hist[i++], command);
     }
 
     // for(int i=0; i<hist_limit; i++){
     //     printf("%d: ", i);
     //     printf("%s\n", hist[i]);
     // }
+    
     fclose(file_ptr);
 }
 
@@ -75,15 +74,15 @@ void update_history(char *command){
 }
 
 void history(char *command[], ll n){
-    int n_cmds;
+    int n_cmds;                                                     /* history n "text" */
     if(n>2){                               
         printf("\033[0;31mError: Too many arguments\033[0m\n");
         return;
     }
-    else if(n==1){                          
+    else if(n==1){                                                  /* history n */          
         n_cmds = 10;
     }
-    else{
+    else{                                                           /* history [n>20] */
         if(atoi(command[1]) > hist_limit){
             n_cmds = hist_limit;
         }

@@ -1,20 +1,20 @@
-history
-exit
-history
-exit
-cd ..
-cd 
-cd ..
-cd ~
-exit
+pinfo 1432
+pinfo 5901
+emacs 
 emacs &
+history 3
 history
-
-exit
-cd ..
+history 3
+echo
 ls 
-ccd
+ls -al
+history 3
+history 50
+history 50
+echo
 cd
-cd
-history
+ls
+pwd
+history 5
+history 29
 exit

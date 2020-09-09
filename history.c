@@ -82,11 +82,11 @@ void history(char *command[], ll n){
     else if(n==1){                                                  /* history n */          
         n_cmds = 10;
     }
-    else{                                                           /* history [n>20] */
-        if(atoi(command[1]) > hist_limit){
+    else{   
+        n_cmds = atoi(command[1]);                                                        /* history [n>20] */
+        if(n_cmds > hist_limit){
             n_cmds = hist_limit;
         }
-        n_cmds = atoi(command[1]);
     }
 
     for(int i=hist_limit-n_cmds; i<hist_limit; i++){

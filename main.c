@@ -22,8 +22,10 @@ void shell_loop(){
         char *command = NULL;
         size_t len;
         getline(&command, &len, stdin);
-        update_history(command);
         // printf("Command: %s\n", command);
+
+        //*** Update history with command***
+        update_history(command);
 
         //*** Input handling - list of commands - ';' ***
         char *list_command[10000];
@@ -51,6 +53,17 @@ void shell_loop(){
             // for(ll j = 0; j < n_curr_command; j++){
             //     printf("subcommand %lld: %s\n", j, curr_command[j]);
             // }
+
+            //*** Check Redirection ***
+            int redirect;
+            if(strstr(list_command[i], ">") != NULL || strstr(list_command[i], "<") != NULL ){
+                redirect = 1;
+            }
+
+            if(redirect == 1){
+                redirection(list_command[i], curr_command, n_curr_command);
+                continue;
+            }
 
             if(strcmp(curr_command[0], "exit") == 0){                       /* exit */
                 printf("Exiting\n");

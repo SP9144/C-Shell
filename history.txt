@@ -1,20 +1,20 @@
-pinfo 1432
-pinfo 5901
-emacs 
-emacs &
-history 3
-history
-history 3
-echo
-ls 
-ls -al
-history 3
-history 50
-history 50
-echo
-cd
-ls
-pwd
-history 5
-history 29
-exit
+e e t > 3
+ere e e >> e
+echo hello.txt
+echo < hello.txt
+sort < hi.txt
+sort < hi.txt
+sort < hi.txt
+sort < hi.txt
+sort < hi.txt
+sort < hi.txt
+sort < hi.txt > hello.txt
+sort < hi.txt
+sort < hi.txt > hello.txt
+diff hi.txt hello.txt > hello.txt
+echo hi > hello.txt
+echo hi > hello.txt
+sort < hi.txt
+sort < hi.txt > hello.txt
+sort < hi.txt >> hello.txt
+sort < hi.txt >> hello.txt 

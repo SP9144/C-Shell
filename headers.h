@@ -28,18 +28,19 @@ char cwd[2000];
 // History
 char hist[20][1000];
 
-void shell_loop();                                      /* Main shell loop */
-void prompt();                                          /* Print Prompt */
-void cd(char *command[], ll n);                         /* cd: Change Directory */
-void pwd(ll n);                                         /* pwd: Present Working Directory */
-void echo(char *command, ll n);                         /* echo: Print to stdout */
-void ls(char *command[], ll n);                         /* ls: List files */
-void pinfo(char *command[], ll n);                      /* pinfo: Process Information */
-void read_history();                                    /* Read history from history.txt */
-void write_history();                                   /* Write history to history.txt */
-void update_history(char *command);                     /* Update history */
-void history(char *command[], ll n);                    /* Display history */    
-void foreground(char *commands[], ll n);                /* Run process in foreground */
-void background(char *commands[], ll n);                /* Run process in background */
+void shell_loop();                                              /* Main shell loop */
+void prompt();                                                  /* Print Prompt */
+void cd(char *command[], ll n);                                 /* cd: Change Directory */
+void pwd(ll n);                                                 /* pwd: Present Working Directory */
+void echo(char *command, ll n);                                 /* echo: Print to stdout */
+void ls(char *command[], ll n);                                 /* ls: List files */
+void pinfo(char *command[], ll n);                              /* pinfo: Process Information */
+void read_history();                                            /* Read history from history.txt */
+void write_history();                                           /* Write history to history.txt */
+void update_history(char *command);                             /* Update history */
+void history(char *command[], ll n);                            /* Display history */    
+void foreground(char *commands[], ll n);                        /* Run process in foreground */
+void background(char *commands[], ll n);                        /* Run process in background */
+void redirection(char *command, char *sub_commands[], ll n);    /* Redirection */
 
 #endif

@@ -1,13 +1,3 @@
-echo hello
-echo hello >> hi.txt
-echo hello > hi.txt
-ls > hi.txt
-ls > hi.txt
-ls >> hi.txt
-echo hi > hi.txt
-ls > hi.txt
-ls >> hi.txt
-cat < hi.txt | wc >> i.txt
 cat < hi.txt | wc >> hi.txt
 echo hi
 echo hi >> hi.txt
@@ -18,3 +8,13 @@ echo hi
 echo hi >> hi.txt
 echo hi >> hi.txt
 echo hi >> hi.txt
+echo hello | wc
+sort < hello.txt
+echo abc > hello.txt
+echo "abc\n" > hello.txt
+echo "abc\n" > hello.txt
+echo a\n 
+sort < hi.txt
+sort < hi.txt | grep "h"
+ sort < hi.txt | grep "h"
+ sort < hi.txt | grep h

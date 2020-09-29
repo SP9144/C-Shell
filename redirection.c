@@ -8,10 +8,10 @@ void remove_spaces(char *string){
             string[j++] = string[i]; 
      
     string[j] = '\0';
-    printf("spaces : \"%s\"\n", string);
+    // printf("spaces : \"%s\"\n", string);
 }
 
-void redirection(char *command, char *sub_commands[], ll n){
+void redirection(char *command){
     
     int input = 0, output = 0, append = 0;    
     
@@ -45,7 +45,7 @@ void redirection(char *command, char *sub_commands[], ll n){
         output_list[1] = strtok(NULL, ">");
         input_list[0] = output_list[0];
     }
-    printf("0: %s, 1: %s\n", output_list[0], output_list[1]);
+    // printf("0: %s, 1: %s\n", output_list[0], output_list[1]);
 
     if(input == 1){
         input_list[0] = strtok(input_list[0], "<");
@@ -103,7 +103,7 @@ void redirection(char *command, char *sub_commands[], ll n){
         if(output == 1){
 
             output_file = strtok(output_list[1], " \t\n");
-            printf("output file: \"%s\"\n", output_file);
+            // printf("output file: \"%s\"\n", output_file);
 
             if(output_file == NULL){
                 printf("\033[0;31mError: File for output redirection not specified\033[0m\n");
@@ -124,7 +124,7 @@ void redirection(char *command, char *sub_commands[], ll n){
 
         if(append == 1){
             output_file = strtok(output_list[1], " \t\n");
-            printf("output file: \"%s\"\n", output_file);
+            // printf("output file: \"%s\"\n", output_file);
 
             if(output_file == NULL){
                 printf("\033[0;31mError: File for output redirection not specified\033[0m\n");
@@ -160,4 +160,6 @@ void redirection(char *command, char *sub_commands[], ll n){
         int status;
         while (wait(&status) != pid);
     }
+
+    return;
 }

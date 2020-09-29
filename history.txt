@@ -1,20 +1,20 @@
-e e t > 3
-ere e e >> e
-echo hello.txt
-echo < hello.txt
-sort < hi.txt
-sort < hi.txt
-sort < hi.txt
-sort < hi.txt
-sort < hi.txt
-sort < hi.txt
-sort < hi.txt > hello.txt
-sort < hi.txt
-sort < hi.txt > hello.txt
-diff hi.txt hello.txt > hello.txt
-echo hi > hello.txt
-echo hi > hello.txt
-sort < hi.txt
-sort < hi.txt > hello.txt
-sort < hi.txt >> hello.txt
-sort < hi.txt >> hello.txt 
+            else if(strcmp(curr_command[0], "echo") == 0){                  /* echo */
+                if(!strcmp(curr_command[n_curr_command-1], "&"))
+                    echo(sub_command[k], n_curr_command-1);
+                else
+                    echo(sub_command[k], n_curr_command);
+            }
+            else if(strcmp(curr_command[0], "ls") == 0){                    /* ls */
+                if(!strcmp(curr_command[n_curr_command-1], "&"))
+                    ls(curr_command, n_curr_command-1);
+                else
+                    ls(curr_command, n_curr_command);
+            }
+            else if(strcmp(curr_command[0], "pinfo") == 0){                 /* pinfo */
+                if(!strcmp(curr_command[n_curr_command-1], "&"))
+                    pinfo(curr_command, n_curr_command-1);
+                else
+                   pinfo(curr_command, n_curr_command); 
+cat hi.txt | wc
+cat < hi.txt | wc
+cat hi.txt | wc

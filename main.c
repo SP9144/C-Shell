@@ -54,6 +54,18 @@ void shell_loop(){
             //     printf("subcommand %lld: %s\n", j, curr_command[j]);
             // }
 
+            //*** Check Piping ***
+            int pipe;
+            if(strstr(list_command[i], "|") != NULL){
+                pipe = 1;
+            }
+
+            if(pipe == 1){
+                piping(list_command[i]);
+                continue;
+            }
+
+            
             //*** Check Redirection ***
             int redirect;
             if(strstr(list_command[i], ">") != NULL || strstr(list_command[i], "<") != NULL ){
@@ -61,7 +73,7 @@ void shell_loop(){
             }
 
             if(redirect == 1){
-                redirection(list_command[i], curr_command, n_curr_command);
+                redirection(list_command[i]);
                 continue;
             }
 

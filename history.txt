@@ -1,7 +1,3 @@
-cat
-cat < hi.txt
-cat
-echo hi
 echo hello
 echo hello >> hi.txt
 echo hello > hi.txt
@@ -18,3 +14,7 @@ echo hi >> hi.txt
 echo hello >> hi.txt
 ls 
 ls >> hi.txt
+echo hi
+echo hi >> hi.txt
+echo hi >> hi.txt
+echo hi >> hi.txt

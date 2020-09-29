@@ -54,16 +54,16 @@ void redirection(char *command){
         // printf("0: %s, 1: %s\n", input_list[0], input_list[1]);
     }
 
-    int nargs = 0; 
-    char *args[100];
+    // int nargs = 0; 
+    // char *args[100];
 
-    args[nargs] = strtok(input_list[0], " ");
-    while (args[nargs] != NULL)
-    {
-        nargs++;
-        args[nargs] = strtok(NULL, " ");
-    }
-    args[nargs] = NULL;
+    // args[nargs] = strtok(input_list[0], " ");
+    // while (args[nargs] != NULL)
+    // {
+    //     nargs++;
+    //     args[nargs] = strtok(NULL, " ");
+    // }
+    // args[nargs] = NULL;
 
     // for(int i=0; i<nargs; i++){
     //     printf("%s\n", args[i]);

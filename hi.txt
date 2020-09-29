@@ -3,3 +3,10 @@
       2      42     378
 hi
 README.md background.c cd.c echo.c foreground.c headers.h hello.txt hi.txt history.c history.txt ls.c main.c makefile pinfo.c piping.c prompt.c pwd.c redirection.c shell_yeah 
+Echo
+ echo
+Echo
+ echo
+Echo
+ echo hi 
+hi 

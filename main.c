@@ -60,13 +60,19 @@ void execute_command(char *list_command){
         else
             pinfo(curr_command, n_curr_command); 
     }
-    else if(strcmp(curr_command[0], "history") == 0){               /* pinfo */
+    else if(strcmp(curr_command[0], "history") == 0){               /* history */
         if(!strcmp(curr_command[n_curr_command-1], "&"))
             history(curr_command, n_curr_command-1);
         else
             history(curr_command, n_curr_command);
     }
-    else if(strstr(list_command, "&")){                          /* background processes - & */
+    // else if(strcmp(curr_command[0], "setenv") == 0){                /* setenv */
+    //     senv(curr_command, n_curr_command);
+    // }
+    // else if(strcmp(curr_command[0], "unsetenv") == 0){              /* unsetenv */
+    //     unsenv(curr_command, n_curr_command);
+    // }
+    else if(strstr(list_command, "&")){                             /* background processes - & */
         background(curr_command, n_curr_command);
     }
     else{                                                           /* foreground processes*/

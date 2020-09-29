@@ -1,9 +1,3 @@
-cat < hi.txt | wc >> hi.txt
-echo hi
-echo hi >> hi.txt
-echo hello >> hi.txt
-ls 
-ls >> hi.txt
 echo hi
 echo hi >> hi.txt
 echo hi >> hi.txt
@@ -18,3 +12,9 @@ sort < hi.txt
 sort < hi.txt | grep "h"
  sort < hi.txt | grep "h"
  sort < hi.txt | grep h
+cat < hi.txt
+sort < hi.txt
+diff hi.txt hello.txt | wc > ans.txt
+sort < hi.txt >> ans.txt
+sort < hi.txt | wc >> ans.txt
+sort < hi.txt | wc > ans.txt

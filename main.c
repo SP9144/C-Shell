@@ -66,18 +66,20 @@ void execute_command(char *list_command){
         else
             history(curr_command, n_curr_command);
     }
-    // else if(strcmp(curr_command[0], "setenv") == 0){                /* setenv */
-    //     senv(curr_command, n_curr_command);
-    // }
-    // else if(strcmp(curr_command[0], "unsetenv") == 0){              /* unsetenv */
-    //     unsenv(curr_command, n_curr_command);
-    // }
+    else if(strcmp(curr_command[0], "setenv") == 0){                /* setenv */
+        set(curr_command, n_curr_command);
+    }
+    else if(strcmp(curr_command[0], "unsetenv") == 0){              /* unsetenv */
+        unset(curr_command, n_curr_command);
+    }
+    else if(strcmp(curr_command[0], "jobs") == 0){                  /* jobs */
+        jobs(n_curr_command);
+    }
     else if(strstr(list_command, "&")){                             /* background processes - & */
         background(curr_command, n_curr_command);
     }
     else{                                                           /* foreground processes*/
         foreground(curr_command, n_curr_command);
-        // printf("\033[0;31mError: command not found\033[0m\n");
     }
 }
 
@@ -160,6 +162,9 @@ int main(int argc, char **argv)
         perror("getcwd(): ");
         exit(1);
     }
+
+    njobs = 0;
+    strcpy(lwd, home);
 
     read_history();
 

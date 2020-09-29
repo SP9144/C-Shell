@@ -30,6 +30,7 @@ char hist[20][1000];
 
 void shell_loop();                                              /* Main shell loop */
 ll split_by(char *list[], char *command, char *delim);          /* Split command by delim */
+void execute_command(char *list_command);                       /* Executes in-built commands */
 void prompt();                                                  /* Print Prompt */
 void cd(char *command[], ll n);                                 /* cd: Change Directory */
 void pwd(ll n);                                                 /* pwd: Present Working Directory */

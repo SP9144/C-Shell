@@ -143,12 +143,24 @@ void redirection(char *command){
             close(output_fd);
         }
 
-        int x = execvp(args[0], args);
-        if(x == -1){
-            printf("\033[0;31mError: Unable to execute\033[0m\n");
-            perror("execvp");
-            return; 
+        int redirect;
+        if(strstr(input_list[0], ">") != NULL || strstr(input_list[0], "<") != NULL ){
+            redirect = 1;
         }
+
+        if(redirect == 1){
+            redirection(input_list[0]);
+        }
+        else{
+            execute_command(input_list[0]);
+        }
+
+        // int x = execvp(args[0], args);
+        // if(x == -1){
+        //     printf("\033[0;31mError: Unable to execute\033[0m\n");
+        //     perror("execvp");
+        //     return; 
+        // }
 
         dup2(actual_stdin, 0);
         close(actual_stdin);

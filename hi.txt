@@ -1,38 +1,5 @@
-background.c
-cd.c
-echo.c
-foreground.c
-headers.h
-hello.txt
+") README.md background.c cd.c echo.c foreground.c headers.h hello.txt hi.txt history.c history.txt lines.txt ls.c main.c makefile pinfo.c piping.c prompt.c pwd.c redirection.c shell_yeah 
+") README.md background.c cd.c echo.c foreground.c headers.h hello.txt hi.txt history.c history.txt lines.txt ls.c main.c makefile pinfo.c piping.c prompt.c pwd.c redirection.c shell_yeah 
+      2      42     378
 hi
-history.c
-history.txt
-hi.txt
-ls.c
-main.c
-makefile
-pinfo.c
-prompt.c
-pwd.c
-README.md
-redirection.c
-shell_yeah
-background.c
-cd.c
-echo.c
-foreground.c
-headers.h
-hello.txt
-hi
-history.c
-history.txt
-hi.txt
-ls.c
-main.c
-makefile
-pinfo.c
-prompt.c
-pwd.c
-README.md
-redirection.c
-shell_yeah
+README.md background.c cd.c echo.c foreground.c headers.h hello.txt hi.txt history.c history.txt ls.c main.c makefile pinfo.c piping.c prompt.c pwd.c redirection.c shell_yeah 

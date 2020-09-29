@@ -1,7 +1,6 @@
 #include "headers.h"
 
 void foreground(char *commands[], ll n){
-    
     int pid;
     pid = fork();
 

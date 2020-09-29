@@ -13,6 +13,68 @@ ll split_by(char *list[], char *command, char *delim){
     return n;
 }
 
+void execute_command(char *list_command){
+    //*** Dividing current command ***
+    char *curr_command[1000];
+    char cmd[2000];
+    ll n_curr_command = 0;
+    strcpy(cmd, list_command);
+    n_curr_command = split_by(curr_command, cmd, " \t\n\r");
+    
+    // printf("number of subcommands: %lld\n", n_curr_command);
+    // for(ll j = 0; j < n_curr_command; j++){
+    //     printf("subcommand %lld: %s\n", j, curr_command[j]);
+    // }
+
+    if(strcmp(curr_command[0], "exit") == 0){                       /* exit */
+        printf("Exiting\n");
+        exit(0);
+    }
+    else if(strcmp(curr_command[0], "cd") == 0){                    /* cd */
+        if(!strcmp(curr_command[n_curr_command-1], "&"))
+            cd(curr_command, n_curr_command-1);
+        else
+            cd(curr_command, n_curr_command);
+    }
+    else if(strcmp(curr_command[0], "pwd") == 0){                   /* pwd */
+        if(!strcmp(curr_command[n_curr_command-1], "&"))
+            pwd(n_curr_command-1);
+        else
+            pwd(n_curr_command);
+    }
+    else if(strcmp(curr_command[0], "echo") == 0){                  /* echo */
+        if(!strcmp(curr_command[n_curr_command-1], "&"))
+            echo(list_command, n_curr_command-1);
+        else
+            echo(list_command, n_curr_command);
+    }
+    else if(strcmp(curr_command[0], "ls") == 0){                    /* ls */
+        if(!strcmp(curr_command[n_curr_command-1], "&"))
+            ls(curr_command, n_curr_command-1);
+        else
+            ls(curr_command, n_curr_command);
+    }
+    else if(strcmp(curr_command[0], "pinfo") == 0){                 /* pinfo */
+        if(!strcmp(curr_command[n_curr_command-1], "&"))
+            pinfo(curr_command, n_curr_command-1);
+        else
+            pinfo(curr_command, n_curr_command); 
+    }
+    else if(strcmp(curr_command[0], "history") == 0){               /* pinfo */
+        if(!strcmp(curr_command[n_curr_command-1], "&"))
+            history(curr_command, n_curr_command-1);
+        else
+            history(curr_command, n_curr_command);
+    }
+    else if(strstr(list_command, "&")){                          /* background processes - & */
+        background(curr_command, n_curr_command);
+    }
+    else{                                                           /* foreground processes*/
+        foreground(curr_command, n_curr_command);
+        // printf("\033[0;31mError: command not found\033[0m\n");
+    }
+}
+
 void shell_loop(){
     do{
         //*** Print Prompt ***
@@ -41,19 +103,6 @@ void shell_loop(){
         for(ll i = 0; i < n_command; i++){
 
             // printf("command %lld: %s\n", i, list_command[i]);
-
-            //*** Dividing current command ***
-            char *curr_command[1000];
-            char cmd[2000];
-            ll n_curr_command = 0;
-            strcpy(cmd, list_command[i]);
-            n_curr_command = split_by(curr_command, cmd, " \t\n\r");
-            
-            // printf("number of subcommands: %lld\n", n_curr_command);
-            // for(ll j = 0; j < n_curr_command; j++){
-            //     printf("subcommand %lld: %s\n", j, curr_command[j]);
-            // }
-
             //*** Check Piping ***
             int pipe;
             if(strstr(list_command[i], "|") != NULL){
@@ -76,54 +125,8 @@ void shell_loop(){
                 redirection(list_command[i]);
                 continue;
             }
-
-            if(strcmp(curr_command[0], "exit") == 0){                       /* exit */
-                printf("Exiting\n");
-                exit(0);
-            }
-            else if(strcmp(curr_command[0], "cd") == 0){                    /* cd */
-                if(!strcmp(curr_command[n_curr_command-1], "&"))
-                    cd(curr_command, n_curr_command-1);
-                else
-                    cd(curr_command, n_curr_command);
-            }
-            else if(strcmp(curr_command[0], "pwd") == 0){                   /* pwd */
-                if(!strcmp(curr_command[n_curr_command-1], "&"))
-                    pwd(n_curr_command-1);
-                else
-                    pwd(n_curr_command);
-            }
-            else if(strcmp(curr_command[0], "echo") == 0){                  /* echo */
-                if(!strcmp(curr_command[n_curr_command-1], "&"))
-                    echo(list_command[i], n_curr_command-1);
-                else
-                    echo(list_command[i], n_curr_command);
-            }
-            else if(strcmp(curr_command[0], "ls") == 0){                    /* ls */
-                if(!strcmp(curr_command[n_curr_command-1], "&"))
-                    ls(curr_command, n_curr_command-1);
-                else
-                    ls(curr_command, n_curr_command);
-            }
-            else if(strcmp(curr_command[0], "pinfo") == 0){                 /* pinfo */
-                if(!strcmp(curr_command[n_curr_command-1], "&"))
-                    pinfo(curr_command, n_curr_command-1);
-                else
-                   pinfo(curr_command, n_curr_command); 
-            }
-            else if(strcmp(curr_command[0], "history") == 0){               /* pinfo */
-                if(!strcmp(curr_command[n_curr_command-1], "&"))
-                    history(curr_command, n_curr_command-1);
-                else
-                    history(curr_command, n_curr_command);
-            }
-            else if(strstr(list_command[i], "&")){                          /* background processes - & */
-                background(curr_command, n_curr_command);
-            }
-            else{                                                           /* foreground processes*/
-                foreground(curr_command, n_curr_command);
-                // printf("\033[0;31mError: command not found\033[0m\n");
-            }
+            
+            execute_command(list_command[i]);
         }
     }
     while(1);

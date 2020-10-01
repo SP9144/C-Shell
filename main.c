@@ -72,7 +72,9 @@ void execute_command(char *list_command){
     else if(strcmp(curr_command[0], "unsetenv") == 0){              /* unsetenv */
         unset(curr_command, n_curr_command);
     }
-
+    else if(strcmp(curr_command[0], "jobs") == 0){                  /* jobs */
+        print_jobs();
+    }
     else if(strstr(list_command, "&")){                             /* background processes - & */
         background(curr_command, n_curr_command);
     }
@@ -86,6 +88,9 @@ void shell_loop(){
     do{
         //*** Print Prompt ***
         prompt();
+
+        //*** Signals ***
+        signal(SIGCHLD, print_status);
 
         //*** Get Input Command ***
         char *command = NULL;
@@ -134,6 +139,8 @@ void shell_loop(){
             }
             
             execute_command(list_command[i]);
+
+            // printf("njobs - loop %d\n", njobs);
         }
     }
     while(1);
@@ -141,12 +148,22 @@ void shell_loop(){
 
 int main(int argc, char **argv)
 {  
+    strcpy(lwd, home);
+
+    njobs = 0;
+    for(int i=0; i<1000; i++)
+    {
+        strcpy(names[i], "");
+        pids[i] = 0;
+    }
+
     gethostname(hostname, sizeof(hostname));
     if(gethostname(hostname, sizeof(hostname)) != 0){
         printf("\033[0;31mError: Unable to retrieve Hostname\033[0m\n");
         perror("gethostname(): ");
         strcpy(hostname, "hostname");
     }
+
 
     getlogin_r(username, sizeof(username));
     if(getlogin_r(username, sizeof(username)) != 0){
@@ -161,9 +178,7 @@ int main(int argc, char **argv)
         perror("getcwd(): ");
         exit(1);
     }
-
-    strcpy(lwd, home);
-
+    
     read_history();
 
     printf("\033[1;33m\n****************************\n\tHELLO WORLD!!\n****************************\n\033[0m");

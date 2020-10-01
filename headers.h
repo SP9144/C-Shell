@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <unistd.h>
+#include <signal.h>
 #include <sys/stat.h> 
 #include <sys/wait.h>
 #include <sys/types.h>
@@ -28,6 +29,11 @@ char lwd[2000];
 
 // History
 char hist[20][1000];
+
+// Jobs
+int njobs;
+int pids[1000];
+char names[1000][1000];
 
 void shell_loop();                                              /* Main shell loop */
 ll split_by(char *list[], char *command, char *delim);          /* Split command by delim */
@@ -48,5 +54,7 @@ void redirection(char *command);                                /* Redirection *
 void piping(char *command);                                     /* Piping */
 void set(char *commands[], ll n);                               /* setenv: Set env variable */
 void unset(char *commands[], ll n);                             /* unsetenv: Unset env variable */
+void print_jobs();
+void print_status();
 
 #endif

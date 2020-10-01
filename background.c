@@ -22,38 +22,18 @@ void background(char *commands[], ll n){
     }
     else if(pid == 0){
 
-        int sub_pid = fork();
-        
-        if(sub_pid == 0){
-            int x;
-            x = execvp(commands[0], subset);
-            if(x == -1){
-                printf("\033[0;31mError: Unable to execute\033[0m\n");
-                perror("execvp");
-                return; 
-            }
+        int x;
+        x = execvp(subset[0], subset);
+        if(x == -1){
+            printf("\033[0;31mError: Unable to execute\033[0m\n");
+            perror("execvp");
+            return; 
         }
-        else{
-            int status;
-            waitpid(sub_pid, &status, 0);
-
-            int stat = WIFEXITED(status);
-            if(stat){
-                int x;
-                x = WEXITSTATUS(status);
-                if(x == 0){
-                    printf("%s with pid %d exited normally\n", commands[0], sub_pid);
-                }
-                else{
-                    printf("\033[0;31mError: Command not found\033[0m\n");
-                    perror("WEXITSTATUS");
-                    return;
-                }
-            }
-            else{
-                printf("%s with pid %d exited abnormally\n", commands[0], sub_pid);
-            } 
-        }
-
+    }
+    else{
+        njobs++;
+        pids[njobs]=pid;
+        strcpy(names[njobs], commands[0]);
+        printf("bg: %d,  %s, %d\n", njobs, names[njobs], pids[njobs]);
     }
 }

@@ -1,21 +1,20 @@
-echo hi
-echo hi >> hi.txt
-echo hi >> hi.txt
-echo hi >> hi.txt
-echo hello | wc
-sort < hello.txt
-echo abc > hello.txt
-echo "abc\n" > hello.txt
-echo "abc\n" > hello.txt
-echo a\n 
-sort < hi.txt
-sort < hi.txt | grep "h"
- sort < hi.txt | grep "h"
- sort < hi.txt | grep h
-cat < hi.txt
-sort < hi.txt
-diff hi.txt hello.txt | wc > ans.txt
-sort < hi.txt >> ans.txt
-sort < hi.txt | wc >> ans.txt
-sort < hi.txt | wc > ans.txt
->>>>>>> parent of 4b37c7e... lwd: cd - implemented.
+
+jobs
+emacs &
+jobs
+
+jobs
+emacs &
+jobs
+
+jobs
+emacs &
+
+jobs
+pinfo
+pinfo 13713
+pinfo 13712
+emacs &
+
+emacs &
+

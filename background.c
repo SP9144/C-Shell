@@ -52,7 +52,7 @@ void background(char *commands[], ll n){
             }
             else{
                 printf("%s with pid %d exited abnormally\n", commands[0], sub_pid);
-            }
+            } 
         }
 
     }

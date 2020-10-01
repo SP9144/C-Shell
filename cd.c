@@ -3,7 +3,6 @@
 void cd(char *command[], ll n){
     char path[2000];
 
-
     if(n>2){                                /* cd arg1 arg2: INVALID */
         printf("\033[0;31mError: Too many arguments\033[0m\n");
         return;

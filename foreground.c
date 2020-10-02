@@ -4,6 +4,7 @@ void foreground(char *commands[], ll n){
     int pid;
     pid = fork();
 
+
     if(pid == -1){
         printf("\033[0;31mError: Unable to fork\033[0m\n");
         perror("fork");
@@ -18,6 +19,10 @@ void foreground(char *commands[], ll n){
         }
     }
     else{
+        curr_pid = pid;
+        strcpy(curr_name, commands[0]);
+        // printf("fore curr %d %s\n", curr_pid, curr_name);
+
         int status;
         waitpid(pid, &status, 0);               /* 0 => same gid as parent */
     }

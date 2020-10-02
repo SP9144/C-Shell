@@ -11,7 +11,7 @@ This is a Linux Shell implemented in C.
 
 ## Exiting from the Shell
 
-`exit`
+`quit`
 
 ## Commands
 
@@ -48,8 +48,28 @@ This is a Linux Shell implemented in C.
   * `pinfo`: Process information about the shell
   * `pinfo <pid>`: Process information about process with given pid
 
+* `setenv [var] [value]` - Sets value of environment variable
+
+  * `setenv [var]`: Default value ""
+  * `setenv [var] [value]`: Last n commands
+
+* `unsetenv [var]` - Unsets value of environment variable
+
+* `jobs` - Prints a list of all running jobs
+
+* `overkill` - Kills all background process at once
+
+* `bg [job_num]` - Changes a Stopped background job to a Running
+
+* `fg [job_num]` - Brings a background job to foreground 
+
 * `<command> &` - Run Process in Background
 
+## Signals
+
+* `CTRL-C` - Sends SIGINT signal to the current foreground job
+
+* `CTRL-Z` - Brings a background job to foreground 
 
 ## Files
 

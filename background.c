@@ -34,6 +34,6 @@ void background(char *commands[], ll n){
         njobs++;
         pids[njobs]=pid;
         strcpy(names[njobs], commands[0]);
-        printf("bg: %d,  %s, %d\n", njobs, names[njobs], pids[njobs]);
+        // printf("bg: %d,  %s, %d\n", njobs, names[njobs], pids[njobs]);
     }
 }

@@ -1,5 +1,7 @@
 #include "headers.h"
 
+char c;
+
 ll split_by(char *list[], char *command, char *delim){
     
     ll n = 0; 
@@ -26,9 +28,9 @@ void execute_command(char *list_command){
     //     printf("subcommand %lld: %s\n", j, curr_command[j]);
     // }
 
-    if(strcmp(curr_command[0], "exit") == 0){                       /* exit */
+    if(strcmp(curr_command[0], "quit") == 0){                       /* exit */
         printf("Exiting\n");
-        exit(0);
+        exit(1);
     }
     else if(strcmp(curr_command[0], "cd") == 0){                    /* cd */
         if(!strcmp(curr_command[n_curr_command-1], "&"))
@@ -75,6 +77,18 @@ void execute_command(char *list_command){
     else if(strcmp(curr_command[0], "jobs") == 0){                  /* jobs */
         print_jobs();
     }
+    else if(strcmp(curr_command[0], "kjob") == 0){                  /* kjob */
+        kjob(curr_command, n_curr_command);
+    }
+    else if(strcmp(curr_command[0], "overkill") == 0){              /* overkill */
+        overkill(curr_command, n_curr_command);
+    }
+    else if(strcmp(curr_command[0], "bg") == 0){                    /* bg */
+        bg(curr_command, n_curr_command);
+    }
+    else if(strcmp(curr_command[0], "fg") == 0){                    /* fg */
+        fg(curr_command, n_curr_command);
+    }
     else if(strstr(list_command, "&")){                             /* background processes - & */
         background(curr_command, n_curr_command);
     }
@@ -85,13 +99,18 @@ void execute_command(char *list_command){
 }
 
 void shell_loop(){
-    do{
+    do{ 
+        curr_pid = -1;      
+        
         //*** Print Prompt ***
         prompt();
 
         //*** Signals ***
         signal(SIGCHLD, print_status);
-
+        signal(SIGINT, ctrlC);
+        // signal(SIGTSTP, ctrlZ);
+        // printf("Returned\n");
+        
         //*** Get Input Command ***
         char *command = NULL;
         size_t len;
@@ -116,7 +135,7 @@ void shell_loop(){
 
             // printf("command %lld: %s\n", i, list_command[i]);
             //*** Check Piping ***
-            int pipe;
+            int pipe = 0;
             if(strstr(list_command[i], "|") != NULL){
                 pipe = 1;
             }
@@ -128,7 +147,7 @@ void shell_loop(){
 
             
             //*** Check Redirection ***
-            int redirect;
+            int redirect = 0 ;
             if(strstr(list_command[i], ">") != NULL || strstr(list_command[i], "<") != NULL ){
                 redirect = 1;
             }
@@ -148,14 +167,19 @@ void shell_loop(){
 
 int main(int argc, char **argv)
 {  
+    shellID = getpid();
+    
     strcpy(lwd, home);
 
     njobs = 0;
-    for(int i=0; i<1000; i++)
-    {
-        strcpy(names[i], "");
-        pids[i] = 0;
-    }
+    killjob_flag = 0;
+    overkill_flag = 0;
+
+    curr_pid = -1;
+    strcpy(curr_name, "");
+
+    ctrlc_flag = 0;
+    ctrlz_flag = 0;
 
     gethostname(hostname, sizeof(hostname));
     if(gethostname(hostname, sizeof(hostname)) != 0){

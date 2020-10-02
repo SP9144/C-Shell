@@ -1,20 +1,7 @@
-
-jobs
 emacs &
 jobs
-
+gedit &
 jobs
-emacs &
+kjob 1 20
 jobs
-
-jobs
-emacs &
-
-jobs
-pinfo
-pinfo 13713
-pinfo 13712
-emacs &
-
-emacs &
-
+quit

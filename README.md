@@ -59,13 +59,22 @@ This is a Linux Shell implemented in C.
 
 * `kjobs [job_num] [sig_num]` - Sends signal val to that process with job_num
 
-* `overkill` - Kills all background process at once
+* `overkill` - Kills all background process
 
 * `bg [job_num]` - Changes a Stopped background job to a Running
 
 * `fg [job_num]` - Brings a background job to foreground 
 
 * `<command> &` - Run Process in Background
+
+* `<command1> | <command1>` - Multiple Piping allowed
+
+* `Redirection ` - I/O Redirection allowed
+
+    * `<`: Input redirection
+    * `>`: Output redirection
+    * `>>`: Append
+
 
 ## Signals
 
@@ -82,6 +91,10 @@ This is a Linux Shell implemented in C.
   * main(): Main function to initialise variables and call the loop
   * shell_loop(): Runs the main loop of the code for the continuous execution of the shell
 
+* `bgfg.c`
+  * bg(): Changes a Stopped background job to a Running
+  * fg(): Brings a background job to foreground 
+
 * `background.c`
   * background(): Forks the existing process and runs a child process in the background. Once the child terminates, the exit status of the child process prints on the screen.
 
@@ -94,17 +107,34 @@ This is a Linux Shell implemented in C.
 * `echo.c` 
   * echo(): Prints a string argument on the terminal (stdout). Handles cases with and without quotes.
 
+* `env.c` 
+  * set(): Changes value of environment variable
+  * unset(): Detroys the environment variables
+
 * `ls.c`
   * ls(): Initialises flags for listing directories specified by absolute or relative path
   * print_ls(): Prints the files in directory  according to arguments
 
+* `jobs.c`
+  * print_jobs(): Called when child process dies to print status
+  * kjob(): Sends signal val to that process with given job_num
+  * overkill(): Kills all background process at once
+
 * `pinfo.c`
   * pinfo(): Prints the info of the process according to arguments
+
+* `piping.c`
+  * piping(): 
   
 * `pwd.c`
-  * pwd():Print the present working directory
-  * tildconvertedpwd():Print the command prompts
-  * tildconverter():Replaces absolute path of home directory with ~ symbol
+  * pwd(): Print the present working directory
+
+* `redirection.c`
+  * redirection(): Allows redirection 
+
+* `signals.c`
+  * print_status(): 
+  * ctrlC():  
 
 * `history.c`
   * read_history(): Loads history from previous session.

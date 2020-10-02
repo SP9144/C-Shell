@@ -50,12 +50,14 @@ This is a Linux Shell implemented in C.
 
 * `setenv [var] [value]` - Sets value of environment variable
 
-  * `setenv [var]`: Default value ""
-  * `setenv [var] [value]`: Last n commands
+  * `setenv [var]`: Default value = " "
+  * `setenv [var] [value]`: var = value
 
 * `unsetenv [var]` - Unsets value of environment variable
 
 * `jobs` - Prints a list of all running jobs
+
+* `kjobs [job_num] [sig_num]` - Sends signal val to that process with job_num
 
 * `overkill` - Kills all background process at once
 
@@ -68,8 +70,6 @@ This is a Linux Shell implemented in C.
 ## Signals
 
 * `CTRL-C` - Sends SIGINT signal to the current foreground job
-
-* `CTRL-Z` - Brings a background job to foreground 
 
 ## Files
 

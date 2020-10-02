@@ -1,7 +1,11 @@
+jobs
+cat < hi.txt
+quit
+ls
+ls
+cd
 emacs &
 jobs
-gedit &
 jobs
-kjob 1 20
-jobs
+exit
 quit
